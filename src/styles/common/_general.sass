@@ -1,0 +1,74 @@
+@use "variables" as *
+
+*
+  box-sizing: border-box
+
+html
+  height: 100%
+
+body
+  font-family: 'Noto Sans JP', sans-serif
+  font-size: 16px
+  line-height: 1.5
+  color: #333
+  min-height: 100%
+  position: relative
+
+a
+  text-decoration: none
+  outline: none
+  color: #333
+  transition: all 0.2s ease-in-out
+  cursor: pointer
+  &:focus
+    outline: none
+    color: #333
+  &:hover
+    opacity: 0.8
+
+button
+  border: 0
+  outline: 0
+  background-color: transparent
+  transition: all 0.2s ease-in-out
+  cursor: pointer
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  line-height: 1.5
+  margin: 0
+  padding: 0
+
+p,
+div,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+figure
+  line-height: 1.7
+  margin: 0
+  padding: 0
+
+h1,
+h2,
+h3,
+h4
+  font-weight: bold
+
+ul
+  list-style-type: none
+
+img
+  vertical-align: bottom
+
+// for mobile
+@media screen and (max-width: $sp-device-width)
+  body
+    min-width: 100%

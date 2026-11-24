@@ -1,23 +1,62 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import 'normalize.css';
+import '../styles/style.sass';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  pageId: string;
+}
+
+const SITE_NAME = '美容室 hair design nico - 埼玉川口の隠れ家プライベートサロン -';
+const DESCRIPTION = '川口駅東口から徒歩7分の隠れ家サロン「美容室 hair design nico」';
+
+const { title, pageId } = Astro.props;
+const isTop = pageId === 'top';
+const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+const ogImage = Astro.site ? new URL('/images/og.jpg', Astro.site).href : '/images/og.jpg';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <meta name="keywords" content="hair design nico, ヘアデザイン ニコ, 埼玉, 川口, 美容室, サロン, プライベートサロン" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={DESCRIPTION} />
+    <meta property="og:image" content={ogImage} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT8Y5DZHCZ" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-KT8Y5DZHCZ');
+    </script>
+  </head>
+  <body id={`page-id-${pageId}`}>
+    <div class:list={['ly-wrapper', isTop && 'is-top has-intro']} id="wrapper">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

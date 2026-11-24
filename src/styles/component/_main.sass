@@ -1,0 +1,91 @@
+/*
+ * layout/main
+ */
+@use "../common/variables" as *
+@use "../common/mixins" as *
+
+.ly-main
+  position: relative
+  background: #fcf6ef
+  min-height: calc(100vh - 80px)
+  &.is-menu-fixed
+    padding-top: 100px
+    .ly-content-bg
+      opacity: 1
+  // for SP TOP
+  &.is-hide-intro
+    .ly-content-bg
+      opacity: 1
+
+.ly-content-bg
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  opacity: 0
+  backface-visibility: hidden
+  overflow: hidden
+  @include transition-opacity()
+  &.is-contact
+    background: url('/images/bg/contact_bg.jpg') center center no-repeat
+    background-size: cover
+    opacity: 1
+  .content-1,
+  .content-2,
+  .content-3,
+  .content-4,
+  .content-5
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    opacity: 0
+    backface-visibility: hidden
+    overflow: hidden
+    @include transition-opacity()
+    &.is-show
+      opacity: 1
+  &.is-top
+    @for $i from 1 through 5
+      .content-#{$i}
+        background: url('/images/bg/top_bg_#{$i}.jpg') center center no-repeat
+        background-size: cover
+
+.ly-content-wrapper
+  width: 100%
+  padding: 150px 50px
+  position: relative
+  overflow: hidden
+  background: #fcf6ef
+  z-index: 2
+  .main-content-inner
+    max-width: 1000px
+    margin: 0 auto
+    padding: 50px 0
+    background: rgba(255,255,255,0.85)
+    position: relative
+    &.is-top
+      color: #fff
+      background: rgba(43,83,74,0.65)
+      .ly-section
+        .section-heading
+          .heading-text
+            border-bottom: 2px solid #fff
+
+// for tablet
+@media screen and (max-width: $tablet-device-width)
+  .ly-content-wrapper
+    padding: 50px 30px
+    .main-content-inner
+      padding: 0
+
+// for SP
+@media screen and (max-width: $sp-device-width)
+  .ly-main
+    min-height: calc(100vh - 50px)
+    &.is-menu-fixed
+      padding-top: 50px
+  .ly-content-wrapper
+    padding: 20px 15px

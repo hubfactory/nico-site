@@ -1,0 +1,27 @@
+/*
+ * layout/wrapper
+ */
+@use "../common/variables" as *
+@use "../common/mixins" as *
+
+.ly-wrapper
+  overflow: hidden
+  min-height: 100%
+  width: 100%
+  opacity: 0
+  position: relative
+  @include transition-opacity()
+  &.is-show
+    opacity: 1
+  &.has-intro
+    margin-top: calc(100vh - 100px)
+
+// for SP
+@media screen and (max-width: $sp-device-width)
+  .ly-wrapper
+    &.has-intro
+      margin-top: 100vh
+    &.is-top
+      .ly-main
+        &.is-menu-fixed
+          padding-top: 0

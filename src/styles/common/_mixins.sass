@@ -1,0 +1,14 @@
+@mixin clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+@mixin transition
+  transition: all 0.2s ease-in-out
+
+@mixin transition-background
+  transition: background 1s ease-in-out
+
+@mixin transition-opacity
+  transition: opacity 1s ease-in-out

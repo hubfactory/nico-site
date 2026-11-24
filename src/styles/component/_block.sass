@@ -1,0 +1,118 @@
+/*
+ * module/block
+ */
+@use "../common/variables" as *
+
+.mod-map-block
+  width: 100%
+  max-width: 640px
+  background: #fff
+  margin: 60px auto
+  position: relative
+  &:before
+    content: ""
+    display: block
+    padding-top: 56.25%
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    border: 0
+
+.mod-route-block
+  width: 100%
+  max-width: 640px
+  margin: 0 auto
+  .route-title
+    font-size: 20px
+  .route-content
+    .route-text
+      padding: 20px 0
+    .route-image-list
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      align-items: center
+    .list-item
+      flex: 0 1 48%
+      margin: 0 0 20px 0
+      img
+        width: 100%
+        height: auto
+
+.mod-contact-table
+  margin: 0 auto
+  width: 640px
+  border-top: 1px dotted #8b6c4c
+  .contact-item
+    display: table
+    width: 100%
+    table-layout: fixed
+    border-bottom: 1px dotted #8b6c4c
+    .item-headline
+      display: table-cell
+      vertical-align: middle
+      font-weight: bold
+      padding: 30px
+      letter-spacing: 1px
+      width: 200px
+      font-size: 20px
+    .item-text
+      display: table-cell
+      vertical-align: middle
+      padding: 30px
+    .tel-text
+      font-size: 30px
+      color: #ce3a45
+      a
+        color: inherit
+    .contact-link-text
+      font-size: 20px
+      margin: 5px 0
+      a
+        display: inline-block
+
+// for tablet
+@media screen and (max-width: $tablet-device-width)
+  .mod-map-block
+    margin: 50px auto
+  .mod-contact-table
+    width: 100%
+    .contact-item
+      .item-headline
+        width: 150px
+        font-size: 16px
+        padding: 30px 10px
+      .item-text
+        padding: 30px 10px
+      .tel-text
+        font-size: 20px
+      .contact-link-text
+        font-size: 16px
+        margin: 5px 0
+
+// for SP
+@media screen and (max-width: $sp-device-width)
+  .mod-map-block
+    margin: 30px auto
+  .mod-route-block
+    width: 100%
+    .route-title
+      font-size: 16px
+    .route-content
+      .route-text
+        padding: 16px 0
+      .route-image-list
+        display: block
+  .mod-contact-table
+    .contact-item
+      display: block
+      padding: 10px 0
+      .item-headline
+        display: block
+        padding: 5px
+      .item-text
+        display: block
+        padding: 5px

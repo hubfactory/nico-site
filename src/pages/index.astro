@@ -1,11 +1,200 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const characteristics = [
+  {
+    title: ['うるツヤになれる厳選トリートメント'],
+    image: '/images/top/characteristic_1.jpg',
+    alt: '髪質改善',
+    text: [
+      '"nico+（美容室ニコ）"の髪質改善「サイエンスアクア」は、テレビでも紹介された独自の技術で効果が長く続くのでコスパも◎',
+      '髪だけではなく頭皮からケアすることで、他ではなかなか味わえないハリのある理想のうるツヤ美髪に！',
+    ],
+  },
+  {
+    title: ['透明感・ツヤ・ダメージレス', '話題のイルミナカラー'],
+    image: '/images/top/characteristic_2.png',
+    alt: 'イルミナカラー',
+    text: [
+      '日本人特有の硬く見えやすい髪もやわらかく淡い発色を実現する、今話題のカラー剤です。 ブリーチすることなく、透明感のあるツヤツヤの髪に仕上げることができます。',
+      'イルミナカラーであなた好みの美しい髪を手に入れて見ませんか？',
+    ],
+    fadeNum: 2,
+  },
+  {
+    title: ['ヘッドスパにプラスアルファ', '低周波で体内から美しくなるデンキバリブラシ'],
+    image: '/images/top/characteristic_4.jpg',
+    alt: 'デンキバリブラシ',
+    text: [
+      '今話題のデンキバリブラシを導入したメニューを取り入れました。',
+      'ヘッドスパにプラスアルファしたこちらのメニュー。ぜひ体験してみてください。',
+    ],
+    fadeNum: 3,
+  },
+  {
+    title: ['あなただけのプライベート空間を演出する', '完全マンツーマン施術'],
+    image: '/images/top/characteristic_3.jpg',
+    alt: 'マンツーマンシステム',
+    text: [
+      '理想のスタイル、髪質改善、年齢による髪のお悩み、なんでもご相談ください！',
+      '完全マンツーマン施術なので周りを気にせず話しやすく、落ち着いて過ごせる◎丁寧なカウンセリングと高い技術で憧れのハリ、ツヤが叶う！',
+    ],
+    fadeNum: 3,
+  },
+];
+
+const routeImages = [1, 2, 3, 4].map((n) => `/images/top/route-1-${n}.jpg`);
+
 ---
 
-<Layout>
-	<Welcome />
+<Layout pageId="top">
+  <main class="ly-main" id="main">
+    <section class="ly-intro">
+      <div class="intro-inner">
+        <div class="intro-block">
+          <h1 class="logo-image">
+            <img alt="hair design nico+" src="/images/common/logo-color.png" />
+          </h1>
+          <p class="intro-text">
+            スタイルを通して<br />
+            街に微笑みがひろがるように<br />
+            癒しの空間を提供する<br />
+            隠れ家サロン。です
+          </p>
+        </div>
+      </div>
+      <div class="scroll-block">
+        <p class="scroll-text">scroll</p>
+      </div>
+    </section>
+
+    <div class="ly-content-wrapper">
+      <!-- / bg -->
+      <div class="ly-content-bg is-top" id="js-content-bg">
+        {[1, 2, 3, 4, 5].map((n) => <div class={`content-${n}`} />)}
+      </div>
+
+      <div class="main-content-inner is-top">
+        <!-- / Concept -->
+        <section class="ly-section js-fade-in-view" data-num="1">
+          <div class="section-heading">
+            <h2 class="heading-text">Concept</h2>
+          </div>
+          <div class="section-contents is-no-mg">
+            <div class="section-text is-emphasis is-concept">
+              来た時よりも笑顔があふれるように<br />
+              そんな想いを nico+（美容室ニコ） というサロン名に込めました。<br />
+              完全マンツーマンシステムで<br />
+              カウンセリングから仕上げまで。<br />
+              髪だけでなく雰囲気や体全体の美を目指して<br />
+              日常の中の癒しの空間を提供します。
+            </div>
+          </div>
+        </section>
+
+        <!-- / Characteristic -->
+        <section class="ly-section">
+          <div class="section-heading">
+            <h2 class="heading-text">Characteristic</h2>
+          </div>
+          {characteristics.map((c) => (
+            <div
+              class:list={['section-contents', c.fadeNum && 'js-fade-in-view']}
+              data-num={c.fadeNum}
+            >
+              <div class="section-title">
+                {c.title.map((t, i) => (
+                  <>{i > 0 && <br />}{t}</>
+                ))}
+              </div>
+              <div class="section-image">
+                <img alt={c.alt} src={c.image} loading="lazy" />
+              </div>
+              <div class="section-text">
+                {c.text.map((t, i) => (
+                  <>{i > 0 && <br />}{t}</>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <!-- / Message -->
+        <section class="ly-section js-fade-in-view" data-num="4">
+          <div class="section-heading">
+            <h2 class="heading-text">Message</h2>
+          </div>
+          <div class="section-contents">
+            <div class="section-image is-massage">
+              <img alt="hair design nico+ Message" src="/images/top/message.png" loading="lazy" />
+            </div>
+            <div class="section-text">
+              マンツーマン対応の為、大型店と違い人が入れ替わることなく仕上げまで担当させて頂きます。<br />
+              地元に密着した愛されるお店を作りたいと思い、ここ川口市に2021年2月にオープンさせていただきました。<br />
+              落ち着いた空間づくりを目指し、お客様にはリラックスして頂きたいと思っております。<br />
+              また薬剤なども最新の良いものを取り入れております。<br />
+              お客様のご希望、イメージ、仕上がりなど予算にあったメニューを提案させて頂きます。一人でも多くの人生に携われたらと思っております☆
+            </div>
+          </div>
+        </section>
+
+        <!-- / Salon Info -->
+        <section class="ly-section">
+          <div class="section-heading">
+            <h2 class="heading-text">Salon Info</h2>
+          </div>
+          <div class="section-contents">
+            <div class="section-image">
+              <img alt="hair design nico+ Salon Info" src="/images/top/saloninfo.jpg" loading="lazy" />
+            </div>
+            <p class="section-text is-emphasis">
+              美容室名: hair design nico+（美容室ニコ）<br />
+              住所: 埼玉県川口市本町1-2-20 Catio. 102<br />
+              TEL: 048-287-8640
+            </p>
+          </div>
+        </section>
+
+        <!-- / Access -->
+        <section class="ly-section is-last-section js-fade-in-view" data-num="5">
+          <div class="section-heading is-access">
+            <h2 class="heading-text">Access</h2>
+          </div>
+          <div class="section-contents">
+            <p class="section-text is-emphasis">
+              埼玉県川口市本町1-2-20<br />
+              JR京浜東北線 川口駅 東口 徒歩7分<br />
+              埼玉高速鉄道 川口元郷駅 徒歩8分
+            </p>
+            <div class="mod-map-block">
+              <iframe
+                title="hair design nico+ 地図"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.1051993753845!2d139.72194715101207!3d35.797350631104436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018930d2bcd5a81%3A0xbc06ef85b3a78a6e!2z44CSMzMyLTAwMTIg5Z-8546J55yM5bed5Y-j5biC5pys55S677yR5LiB55uu77yS4oiS77yS77yQ!5e0!3m2!1sja!2sjp!4v1611040694209!5m2!1sja!2sjp"
+                width="100%"
+                height="450"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="mod-route-block">
+              <div class="route-title">【 川口駅からの行き方 】</div>
+              <div class="route-content">
+                <p class="route-text">
+                  川口駅東口を出て、「川口本町大通り」をまっすぐ進みます。<br />
+                  川口郵便局手前の歩道橋で右折、セブンイレブンの奥の建物の1階が当店です。
+                </p>
+                <ul class="route-image-list">
+                  {routeImages.map((src) => (
+                    <li class="list-item">
+                      <img alt="hair design nico 川口駅からの行き方" src={src} loading="lazy" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
 </Layout>

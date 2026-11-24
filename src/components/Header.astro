@@ -1,0 +1,170 @@
+---
+const menu = [
+  { href: '/', main: 'Top', sub: 'トップ' },
+  { href: 'https://beauty.hotpepper.jp/slnH000522231/blog/', main: 'Blog', sub: 'ブログ', external: true },
+  { href: '/contact', main: 'Contact', sub: 'お問い合わせ' },
+];
+const ext = { target: '_blank', rel: 'noopener noreferrer' };
+---
+
+<header class="ly-global-header" id="js-global-header">
+  <div class="header-logo">
+    <a href="/">
+      <img src="/images/common/logo-white.png" alt="hair design nico+" />
+    </a>
+  </div>
+  <nav class="header-menu">
+    <div class="header-menu-inner">
+      <ul class="base-menu">
+        {menu.map((item) => (
+          <li>
+            <a href={item.href} {...(item.external ? ext : {})}>
+              <p class="menu-sub-text">{item.sub}</p>
+              <p class="menu-main-text">{item.main}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+  <button type="button" class="header-menu-btn js-slider-menu-trigger" aria-label="メニュー" aria-expanded="false"></button>
+  <nav class="header-slider-menu-screen js-slider-menu-target">
+    <div class="screen-inner">
+      <ul class="screen-menu">
+        {menu.map((item) => (
+          <li>
+            <a href={item.href} {...(item.external ? ext : {})}>
+              <p class="menu-main-text">
+                {item.main}
+                <span class="menu-sub-text">{item.sub}</span>
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<style lang="sass">
+@use "../styles/common/variables" as *
+@use "../styles/common/mixins" as *
+
+.ly-global-header
+  width: 100%
+  height: 100px
+  background: rgba(43,83,74,0.8)
+  position: relative
+  z-index: 10
+  @include clearfix()
+  @include transition-background()
+  &.is-fixed
+    position: fixed
+    top: 0
+    left: 0
+    background: #2b534a
+  .header-logo
+    float: left
+    line-height: 0
+    padding: 20px 0 16px 48px
+    a
+      display: block
+      width: 120px
+    img
+      width: 100%
+  .header-menu
+    float: right
+  .header-menu-inner
+    display: inline-block
+  .base-menu
+    display: table
+    height: 92px
+    margin-right: 48px
+    li
+      display: table-cell
+      padding: 8px 16px 0
+      vertical-align: middle
+      position: relative
+      &:after
+        position: absolute
+        top: 52px
+        right: 0
+        content: ''
+        width: 1px
+        height: 20px
+        background: #fff
+      &:last-child:after
+        content: none
+      a
+        display: block
+        color: #fff
+        position: relative
+        &:hover
+          top: 2px
+      .menu-sub-text
+        font-size: 12px
+        text-align: center
+        margin-bottom: 5px
+      .menu-main-text
+        font-size: 24px
+        letter-spacing: 2px
+        font-family: 'Cinzel', serif
+  .header-menu-btn
+    display: none
+    float: right
+    width: 50px
+    height: 50px
+    background-size: 25px 25px
+    background-repeat: no-repeat
+    background-position: center
+    background-image: url('/images/common/icon_menu.png')
+    @include transition()
+    &.is-open
+      background-image: url('/images/common/icon_menu_close.png')
+  .header-slider-menu-screen
+    position: absolute
+    top: 50px
+    left: 0
+    width: 100%
+    background: rgba(206,177,143,0.95)
+    z-index: 10
+    overflow: hidden
+    height: 0
+    transition: height 0.3s ease-in-out
+    &.is-open
+      height: calc(100vh - 50px)
+    .screen-inner
+      padding: 10px 15px
+  .screen-menu
+    li
+      padding: 10px 10px 5px
+      border-bottom: 1px solid #2b534a
+      a
+        display: block
+        color: #2b534a
+      .menu-sub-text
+        font-size: 12px
+        text-align: center
+        margin-bottom: 5px
+      .menu-main-text
+        font-size: 20px
+        letter-spacing: 2px
+        font-family: 'Cinzel', serif
+
+// for SP
+@media screen and (max-width: $sp-device-width)
+  .ly-global-header
+    height: 50px
+    position: fixed
+    top: 0
+    left: 0
+    background: #2b534a
+    .header-logo
+      padding: 12px 0 0 15px
+      a
+        width: 64px
+    .header-menu
+      display: none
+    .header-menu-btn
+      display: block
+</style>
